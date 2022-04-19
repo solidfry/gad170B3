@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public enum PlayerNumber { One = 1, Two = 2, Three = 3, Four = 4 } // the number for our players
@@ -20,6 +21,8 @@ public class Tank : MonoBehaviour
 
     private void OnEnable()
     {
+        TankGameEvents.OnPickUpBoostEvent += tankMovement.ModifySpeed;
+        TankGameEvents.OnPickUpBoostResetEvent += ResetBoost;
         TankGameEvents.OnObjectDestroyedEvent += Dead; // add dead function to the event for when a tank is destroyed
         TankGameEvents.OnObjectTakeDamageEvent += TankTakenDamage; // assign our health function to our event so we can take damage
         TankGameEvents.OnGameStartedEvent += EnableInput; // assign our tank movement function to the game started event
@@ -27,6 +30,8 @@ public class Tank : MonoBehaviour
 
     private void OnDisable()
     {
+        TankGameEvents.OnPickUpBoostEvent -= tankMovement.ModifySpeed;
+        TankGameEvents.OnPickUpBoostResetEvent -= ResetBoost; // add dead function to the event for when a tank is destroyed
         TankGameEvents.OnObjectDestroyedEvent -= Dead; // add dead function to the event for when a tank is destroyed
         TankGameEvents.OnObjectTakeDamageEvent -= TankTakenDamage; // assign our health function to our event so we can take damage
         TankGameEvents.OnGameStartedEvent -= EnableInput; // assign our tank movement function to the game started event
@@ -34,12 +39,12 @@ public class Tank : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
         tankHealth.SetUp(transform); // call the set up function of our tank health script
         tankMovement.SetUp(transform); // calls the set up function of our tank health script
         tankMainGun.SetUp(); // calls the set up function of our tank main gun script
 
-        if(enableTankMovement)
+        if (enableTankMovement)
         {
             EnableInput();
         }
@@ -47,7 +52,7 @@ public class Tank : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
         // passes in the values from our key input, to our motor to make it move
         tankMovement.HandleMovement(tankControls.ReturnKeyValue(TankControls.KeyType.Movement), tankControls.ReturnKeyValue(TankControls.KeyType.Rotation));
         tankMainGun.UpdateMainGun(tankControls.ReturnKeyValue(TankControls.KeyType.Fire)); // grab the input from the fire key
@@ -72,7 +77,7 @@ public class Tank : MonoBehaviour
     {
         Debug.Log("Damage Taken");
         // if the Tank transform coming in, isn't this particular tank, ignore it.
-        if(TankTransform != transform)
+        if (TankTransform != transform)
         {
             Debug.Log("Not the right transform");
             return;
@@ -90,13 +95,36 @@ public class Tank : MonoBehaviour
     /// <param name="ObjectDestroyed"></param>
     private void Dead(Transform ObjectDestroyed)
     {
-        if(ObjectDestroyed != transform)
+        if (ObjectDestroyed != transform)
         {
             return;
         }
 
-        GameObject clone = Instantiate(explosionPrefab, transform.position,explosionPrefab.transform.rotation); // spawn in our explosion effect
+        GameObject clone = Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation); // spawn in our explosion effect
         Destroy(clone, 2); // just cleaning up our particle effect
         gameObject.SetActive(false); // turn off our tank as we are dead
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.GetComponent<ModifySpeed>() is not null)
+        {
+            float speedBoost = other.gameObject.GetComponent<ModifySpeed>().speedBoost;
+            float originalSpeed = tankMovement.speed;
+            Boost(originalSpeed, speedBoost);
+            Debug.Log($"Your new speed is {tankMovement.speed}");
+        }
+    }
+
+    void Boost(float valueToBoost, float amountToBoost)
+    {
+        TankGameEvents.OnPickUpBoostEvent?.Invoke(valueToBoost, amountToBoost);
+        Debug.Log($"The speed sent to the even is {valueToBoost} and the speedBoost is {amountToBoost} ");
+        TankGameEvents.OnPickUpBoostResetEvent.Invoke(valueToBoost);
+    }
+
+    void ResetBoost(float valueToReset)
+    {
+        StartCoroutine(tankMovement.ResetSpeed(valueToReset));
     }
 }

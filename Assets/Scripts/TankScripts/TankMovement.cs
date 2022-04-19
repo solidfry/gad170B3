@@ -7,7 +7,7 @@ using UnityEngine;
 /// Handle everything to do with our tank movement
 /// </summary>
 [System.Serializable]
-public class TankMovement 
+public class TankMovement
 {
     public float speed = 12f; // the speed our tank moves
     public float turnSpeed = 180f; // the speed that we can turn in degrees in seconds.
@@ -20,6 +20,17 @@ public class TankMovement
 
     private Transform tankReference; // a reference to the tank gameobject
 
+    public float CurrentSpeed
+    {
+        get
+        {
+            return speed;
+        }
+        set
+        {
+            speed = value;
+        }
+    }
 
     /// <summary>
     /// Handles the set up of our tank movement script
@@ -57,7 +68,7 @@ public class TankMovement
     public void HandleMovement(float ForwardMovement, float RotationMovement)
     {
         // if we can't move don't
-        if(enableMovement == false)
+        if (enableMovement == false)
         {
             return;
         }
@@ -89,5 +100,23 @@ public class TankMovement
         // update our rigidboy with this new rotation
         rigidbody.MoveRotation(rigidbody.rotation * turnRotation); // rotate our rigidbody based on our input.
     }
+
+    public void ModifySpeed(float speed, float speedModifier)
+    {
+        float originalSpeed = speed;
+        Debug.Log("ModifySpeed has run");
+        CurrentSpeed = speed + speedModifier;
+        Debug.Log($"Speed in modifySpeed is {CurrentSpeed}");
+        TankGameEvents.OnPickUpBoostResetEvent?.Invoke(originalSpeed);
+    }
+
+    public IEnumerator ResetSpeed(float originalSpeed)
+    {
+        // Debug.Log($"Speed reset will run in 3 seconds.");
+        // Debug.Log("Ok 3 seconds have passed");
+        yield return new WaitForSeconds(3);
+        CurrentSpeed = originalSpeed;
+    }
+
 }
 

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class TankGameEvents 
+public static class TankGameEvents
 {
     public delegate void OnObjectDestroyed(Transform TankDestroyed);
     public delegate void ObjectTakeDamage(Transform ObjectDamaged, float amountOfDamage);
-
     public delegate void SpawnTanksIn(int NumberToSpawn);
     public delegate void OnTanksSpawned(List<GameObject> allTanksSpawnedIn);
-
+    public delegate void OnPickUpBoost(float speed, float speedModifier);
+    public delegate void OnPickUpBoostReset(float originalSpeed);
     public delegate void ResetGame();
     public delegate void ResetRound();
 
@@ -29,6 +29,15 @@ public static class TankGameEvents
     /// </summary>
     public static ObjectTakeDamage OnObjectTakeDamageEvent;
 
+    /// <summary>
+    /// Called when a tank picks up a boost
+    /// </summary>
+    public static OnPickUpBoost OnPickUpBoostEvent;
+
+    /// <summary>
+    /// Called after a tank has picked up a boost and we want to reset the stat to the previous value
+    /// </summary>
+    public static OnPickUpBoostReset OnPickUpBoostResetEvent;
     /// <summary>
     /// Called when the tanks should be spawned in
     /// </summary>
@@ -64,7 +73,7 @@ public static class TankGameEvents
     /// Called when a player has scored a point
     /// </summary>
     public static UpdateScore OnScoreUpdatedEvent;
-   
+
     /// <summary>
     /// Called when the round is reset
     /// </summary>
