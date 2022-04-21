@@ -107,11 +107,11 @@ public class Tank : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.GetComponent<ModifySpeed>() is not null)
+        if (other.gameObject.GetComponent<IModifyStats>() is not null)
         {
-            float speedBoost = other.gameObject.GetComponent<ModifySpeed>().speedBoost;
-            float originalSpeed = tankMovement.speed;
-            Boost(originalSpeed, speedBoost);
+            float boostValue = other.gameObject.GetComponent<ModifyStat>().boostValue;
+            float originalValue = tankMovement.speed;
+            Boost(originalValue, boostValue);
             Debug.Log($"Your new speed is {tankMovement.speed}");
         }
     }

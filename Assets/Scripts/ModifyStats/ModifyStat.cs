@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ModifySpeed : MonoBehaviour, IModifyStats
+public class ModifyStat : MonoBehaviour, IModifyStats
 {
     [SerializeField]
-    public float speedBoost = 5f;
+    public float boostValue = 5f;
     public bool hasAcquired = false;
 
     public void HasAcquired()
