@@ -7,7 +7,8 @@ public class TankCameraController : MonoBehaviour
     public float dampTime = 0.2f; // Approximate time it should take for our camera to focus on our tanks
     public float screenEdgeBuffer = 4; // space between the top and the bottom of targets
     public float minCameraSize = 6.5f; // the smallest othorgraphic camera size
-    private List<GameObject> listOfTanks = new List<GameObject>(); // a reference to all the tanks in our scene
+    public List<GameObject> containWithinCamera = new List<GameObject>(); // a reference to all the tanks in our scene
+    public GameObject ball;
 
     private Camera cam; // a reference to our main camera 
     private float zoomSpeed; // the speed we be zooming in/out at
@@ -29,15 +30,17 @@ public class TankCameraController : MonoBehaviour
 
     private void Start()
     {
-        if(enableCameraOnStart)
+        if (enableCameraOnStart)
         {
             Tank[] allTanks = FindObjectsOfType<Tank>();
             List<GameObject> allTanksList = new List<GameObject>(); //list of all tanks
 
-            for(int i=0; i<allTanks.Length; i++)
+            for (int i = 0; i < allTanks.Length; i++)
             {
                 allTanksList.Add(allTanks[i].gameObject); // store the game object of the tank
             }
+
+
 
             Initalise(allTanksList);
         }
@@ -55,8 +58,11 @@ public class TankCameraController : MonoBehaviour
     /// </summary>
     private void Initalise(List<GameObject> allTanks)
     {
-        listOfTanks = allTanks; // set our reference to all the tanks list
+        containWithinCamera = allTanks; // set our reference to all the tanks list
 
+        // I wanted the camera to account for the ball that I added to the game 
+        if (ball != null)
+            containWithinCamera.Add(ball.gameObject);
         // find the average position
         FindAveragePosition();
         // set our transform to our immediate desired position
@@ -99,16 +105,16 @@ public class TankCameraController : MonoBehaviour
         float size = 0; // start the startin size to 0;
 
         // loop through all the tanks
-        for(int i=0; i< listOfTanks.Count; i++)
+        for (int i = 0; i < containWithinCamera.Count; i++)
         {
-            if (listOfTanks[i].activeSelf == false)
+            if (containWithinCamera[i].activeSelf == false)
             {
                 // check to see if the tanks is enabled
                 continue; // skip to the next element
             }
             else
             {
-                Vector3 targetLocalPos = transform.InverseTransformPoint(listOfTanks[i].transform.position); // grab the local position of the tank relative to the camera
+                Vector3 targetLocalPos = transform.InverseTransformPoint(containWithinCamera[i].transform.position); // grab the local position of the tank relative to the camera
 
                 // find the position of the desired target position of the camera's local space
                 Vector3 desiredPosToTarget = targetLocalPos - desiredLocalPosition; // grabbing the direction between 
@@ -136,23 +142,23 @@ public class TankCameraController : MonoBehaviour
         Vector3 averagePos = new Vector3(); // creating a blank vector 3 i.e. 0,0,0
         int numTargets = 0; // the number of tanks we are trying to average
 
-        for(int i=0; i<listOfTanks.Count; i++)
+        for (int i = 0; i < containWithinCamera.Count; i++)
         {
             // loop through all our tanks
-            if(listOfTanks[i].activeSelf == false)
+            if (containWithinCamera[i].activeSelf == false)
             {
                 // check to see if the tank is active if not jump to the next element in the list
                 continue;
             }
             else
             {
-                averagePos += listOfTanks[i].transform.position; // add the current tank to our position
+                averagePos += containWithinCamera[i].transform.position; // add the current tank to our position
                 numTargets++; // increase the number of tank targets by one
             }
         }
 
         // do a check to make sure we are not dividing by 0
-        if(numTargets >0)
+        if (numTargets > 0)
         {
             averagePos /= numTargets; // get the average position from our targets
         }

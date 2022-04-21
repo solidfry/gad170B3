@@ -15,6 +15,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 28630484339897490, guid: 268f946728390b64db521f40f31a4a70,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f6ba25b90c26a334fa70eee9c8488856, type: 2}
     - target: {fileID: 318541969840425566, guid: 268f946728390b64db521f40f31a4a70,
         type: 3}
       propertyPath: playerNumber
@@ -37,6 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 318541969840425566, guid: 268f946728390b64db521f40f31a4a70,
         type: 3}
+      propertyPath: tankMovement.speed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 318541969840425566, guid: 268f946728390b64db521f40f31a4a70,
+        type: 3}
       propertyPath: tankControls.forward
       value: 273
       objectReference: {fileID: 0}
@@ -56,6 +66,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 13400000, guid: 3ace2f171cd6b374fb8b9a5e8c5d0cf1,
         type: 2}
+    - target: {fileID: 491440104372762009, guid: 268f946728390b64db521f40f31a4a70,
+        type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 491440104372762009, guid: 268f946728390b64db521f40f31a4a70,
         type: 3}
       propertyPath: m_Constraints
@@ -81,6 +96,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 934555424572209761, guid: 268f946728390b64db521f40f31a4a70,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f6ba25b90c26a334fa70eee9c8488856, type: 2}
+    - target: {fileID: 1344896027221328047, guid: 268f946728390b64db521f40f31a4a70,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f6ba25b90c26a334fa70eee9c8488856, type: 2}
     - target: {fileID: 2328160367199845525, guid: 268f946728390b64db521f40f31a4a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -146,5 +171,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8434513143444788161, guid: 268f946728390b64db521f40f31a4a70,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f6ba25b90c26a334fa70eee9c8488856, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 268f946728390b64db521f40f31a4a70, type: 3}
+--- !u!1 &7722893114977114639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 491440104372762015, guid: 268f946728390b64db521f40f31a4a70,
+    type: 3}
+  m_PrefabInstance: {fileID: 7925429849185955728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-4051477124953579573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7722893114977114639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de342c7660a3efb47aee7a90b2c966d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceApplied: 300

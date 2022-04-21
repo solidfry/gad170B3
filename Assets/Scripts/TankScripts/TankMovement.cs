@@ -107,7 +107,6 @@ public class TankMovement
         Debug.Log("ModifySpeed has run");
         CurrentSpeed = speed + speedModifier;
         Debug.Log($"Speed in modifySpeed is {CurrentSpeed}");
-        TankGameEvents.OnPickUpBoostResetEvent?.Invoke(originalSpeed);
     }
 
     public IEnumerator ResetSpeed(float originalSpeed)

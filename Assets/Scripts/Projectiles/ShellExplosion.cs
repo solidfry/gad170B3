@@ -37,7 +37,7 @@ public class ShellExplosion : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++) // loop through all the colliders in the explosion
         {
             Rigidbody targetRigidbody = colliders[i].GetComponent<Rigidbody>(); // grab a reference to the rigidbody
-            if(!targetRigidbody)
+            if (!targetRigidbody)
             {
                 Debug.Log("Target Has No Rigidbody Ignoring");
                 continue; // if there is no rigidbody continue on to the next element, so skip the rest of this code below.
@@ -52,7 +52,7 @@ public class ShellExplosion : MonoBehaviour
 
         // spawn in our explosion effect
         GameObject clone = Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation);
-        Destroy(clone,maxShellLifeTime);
+        Destroy(clone, maxShellLifeTime);
 
     }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ModifyStat : MonoBehaviour, IModifyStats
 {
+    public enum StatType { Speed }
+
     [SerializeField]
     public float boostValue = 5f;
     public bool hasAcquired = false;

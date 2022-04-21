@@ -30,7 +30,7 @@ public class TankSpawnManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         // loops through all the possible spawn points
-        for(int i=0; i<allPossibleSpawnPoints.Count; i++)
+        for (int i = 0; i < allPossibleSpawnPoints.Count; i++)
         {
             Gizmos.color = Color.red; // set the colour of our gizmo to red
             Gizmos.DrawSphere(allPossibleSpawnPoints[i].position, 0.25f); // draw a gizmo for our spawn point location
