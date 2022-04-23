@@ -60,7 +60,15 @@ public class TankUIManager : MonoBehaviour
     void ShowGameEnd(Team winningTeam)
     {
         roundOverText.SetActive(true);
-        roundOverText.GetComponentInChildren<TMP_Text>().text = winningTeam.ToString() + " Wins!";
+
+        if (winningTeam == Team.None)
+        {
+            roundOverText.GetComponentInChildren<TMP_Text>().text = "Draw";
+        }
+        else
+        {
+            roundOverText.GetComponentInChildren<TMP_Text>().text = winningTeam.ToString() + " Wins!";
+        }
     }
 }
 
