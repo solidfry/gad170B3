@@ -39,7 +39,7 @@ public class TankCameraController : MonoBehaviour
             {
                 allTanksList.Add(allTanks[i].gameObject); // store the game object of the tank
             }
-
+            allTanksList.Add(ball.gameObject);
 
 
             Initalise(allTanksList);

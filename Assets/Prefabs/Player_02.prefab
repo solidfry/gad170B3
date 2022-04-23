@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1219835352, guid: 268f946728390b64db521f40f31a4a70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 1375452540, guid: 268f946728390b64db521f40f31a4a70, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -106,6 +110,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f6ba25b90c26a334fa70eee9c8488856, type: 2}
+    - target: {fileID: 2328160366942467239, guid: 268f946728390b64db521f40f31a4a70,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2328160367199845525, guid: 268f946728390b64db521f40f31a4a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -114,6 +123,11 @@ PrefabInstance:
     - target: {fileID: 2328160367199845525, guid: 268f946728390b64db521f40f31a4a70,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328160367877027847, guid: 268f946728390b64db521f40f31a4a70,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3497797121813383052, guid: 268f946728390b64db521f40f31a4a70,
@@ -196,4 +210,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de342c7660a3efb47aee7a90b2c966d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceApplied: 300
+  forceApplied: 500

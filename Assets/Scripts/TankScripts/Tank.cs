@@ -102,7 +102,7 @@ public class Tank : MonoBehaviour
 
         GameObject clone = Instantiate(explosionPrefab, transform.position, explosionPrefab.transform.rotation); // spawn in our explosion effect
         Destroy(clone, 2); // just cleaning up our particle effect
-        gameObject.SetActive(false); // turn off our tank as we are dead
+        // gameObject.SetActive(false); // turn off our tank as we are dead
     }
 
     private void OnCollisionEnter(Collision other)
@@ -119,7 +119,7 @@ public class Tank : MonoBehaviour
     void Boost(float valueToBoost, float amountToBoost)
     {
         TankGameEvents.OnPickUpBoostEvent?.Invoke(valueToBoost, amountToBoost);
-        Debug.Log($"The speed sent to the even is {valueToBoost} and the speedBoost is {amountToBoost} ");
+        // Debug.Log($"The speed sent to the even is {valueToBoost} and the speedBoost is {amountToBoost} ");
         TankGameEvents.OnPickUpBoostResetEvent.Invoke(valueToBoost);
     }
 

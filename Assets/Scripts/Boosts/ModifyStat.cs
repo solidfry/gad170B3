@@ -8,18 +8,26 @@ public class ModifyStat : MonoBehaviour, IModifyStats
 
     [SerializeField]
     public float boostValue = 5f;
+    public float boostCountDown = 2f;
     public bool hasAcquired = false;
 
     public void HasAcquired()
     {
         hasAcquired = true;
-        Destroy(this.gameObject);
+        this.gameObject.GetComponent<Renderer>().enabled = false;
+        StartCoroutine(RespawnBoost());
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.GetComponent<Tank>() is not null)
             HasAcquired();
+    }
+
+    public IEnumerator RespawnBoost()
+    {
+        yield return new WaitForSeconds(boostCountDown);
+        this.gameObject.GetComponent<Renderer>().enabled = true;
     }
 
 }

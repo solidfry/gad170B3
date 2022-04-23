@@ -10,6 +10,11 @@ public static class TankGameEvents
     public delegate void OnTanksSpawned(List<GameObject> allTanksSpawnedIn);
     public delegate void OnPickUpBoost(float speed, float speedModifier);
     public delegate void OnPickUpBoostReset(float originalSpeed);
+    public delegate void OnGoalScored(Collider currentGoals);
+
+    public delegate void OnGameEnded();
+    public delegate void ShowEndScreen(Team winningTeam);
+
     public delegate void ResetGame();
     public delegate void ResetRound();
 
@@ -38,6 +43,22 @@ public static class TankGameEvents
     /// Called after a tank has picked up a boost and we want to reset the stat to the previous value
     /// </summary>
     public static OnPickUpBoostReset OnPickUpBoostResetEvent;
+
+    /// <summary>
+    /// A goal is scored 
+    /// </summary>
+    public static OnGoalScored OnGoalScoredEvent;
+
+    /// <summary>
+    /// The game has ended
+    /// </summary>
+    public static OnGameEnded OnGameEndedEvent;
+
+    /// <summary>
+    /// Show the end screen
+    /// </summary>
+    public static ShowEndScreen ShowEndScreenEvent;
+
     /// <summary>
     /// Called when the tanks should be spawned in
     /// </summary>

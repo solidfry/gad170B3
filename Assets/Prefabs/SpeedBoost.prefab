@@ -224,7 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d284950a5a0789d478032386b166b978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostValue: 5
+  boostValue: 20
+  boostCountDown: 10
   hasAcquired: 0
 --- !u!114 &621901654919530073
 MonoBehaviour:

@@ -10,8 +10,6 @@ public class TankGameManager : MonoBehaviour
 
     private int playerOneScore;
     private int playerTwoScore;
-    private int playerThreeScore;
-    private int playerFourscore;
 
     private void OnEnable()
     {
@@ -32,9 +30,9 @@ public class TankGameManager : MonoBehaviour
     private void TanksSpawned(List<GameObject> tanksSpawnedIn)
     {
         allTanksSpawnedIn.Clear();
-        for(int i=0; i<tanksSpawnedIn.Count; i++)
+        for (int i = 0; i < tanksSpawnedIn.Count; i++)
         {
-            if(!tanksSpawnedIn[i].GetComponent<Tank>())
+            if (!tanksSpawnedIn[i].GetComponent<Tank>())
             {
                 continue; // checks to see if it has a tank script, if it does then add it to the list, otherwise continue to the next element
             }
@@ -47,7 +45,7 @@ public class TankGameManager : MonoBehaviour
 
     private void UpdateScores()
     {
-        for(int i=0; i<allTanksSpawnedIn.Count; i++)
+        for (int i = 0; i < allTanksSpawnedIn.Count; i++)
         {
             switch (allTanksSpawnedIn[i].playerNumber)
             {
@@ -61,17 +59,7 @@ public class TankGameManager : MonoBehaviour
                         TankGameEvents.OnScoreUpdatedEvent?.Invoke(allTanksSpawnedIn[i].playerNumber, playerTwoScore);
                         break;
                     }
-                case PlayerNumber.Three:
-                    {
-                        TankGameEvents.OnScoreUpdatedEvent?.Invoke(allTanksSpawnedIn[i].playerNumber, playerThreeScore);
-                        break;
-                    }
-                case PlayerNumber.Four:
-                    {
-                        TankGameEvents.OnScoreUpdatedEvent?.Invoke(allTanksSpawnedIn[i].playerNumber, playerFourscore);
-                        break;
-                    }
-            }       
+            }
         }
     }
 
@@ -81,7 +69,7 @@ public class TankGameManager : MonoBehaviour
     /// <param name="tankDespawned"></param>
     private void TankDespawned(Transform tankDespawned)
     {
-        if(tankDespawned.GetComponent<Tank>() == null)
+        if (tankDespawned.GetComponent<Tank>() == null)
         {
             return; // jump out of here if the object coming in doesn't tank script
         }
@@ -89,7 +77,7 @@ public class TankGameManager : MonoBehaviour
         allTanksSpawnedIn.Remove(tankDespawned.GetComponent<Tank>()); // remove the tank despawned
 
         //check to see how tanks are left, if there is one, then declare it the winner
-        if(allTanksSpawnedIn.Count <=1)
+        if (allTanksSpawnedIn.Count <= 1)
         {
             // we have one tank left in theory.
             //delclare that player the winner
@@ -103,14 +91,6 @@ public class TankGameManager : MonoBehaviour
             {
                 playerTwoScore++;
             }
-            else if ((int)allTanksSpawnedIn[0].playerNumber == 3)
-            {
-                playerThreeScore++;
-            }
-            else if ((int)allTanksSpawnedIn[0].playerNumber == 4)
-            {
-                playerFourscore++;
-            }
 
             // update our score
             UpdateScores();
@@ -118,7 +98,7 @@ public class TankGameManager : MonoBehaviour
 
             // reset our round
             Invoke("ResetRound", 3f); // after 3 seconds reset our round
-            
+
         }
 
     }
@@ -151,9 +131,8 @@ public class TankGameManager : MonoBehaviour
         TankGameEvents.OnResetGameEvent?.Invoke(); // invoke our resetGameEvent
         TankGameEvents.OnPreGameEvent?.Invoke(); // call our pregame event
         TankGameEvents.SpawnTanksEvent(2); // might want to do different things between tank spawed and game started
-        yield return new WaitForSeconds(preGameWaitTime);      
+        yield return new WaitForSeconds(preGameWaitTime);
         TankGameEvents.OnGameStartedEvent?.Invoke(); // start our game up
-
         // do something else in too
 
         yield return null; // this tells our coroutine when the next "frame/update" should occur

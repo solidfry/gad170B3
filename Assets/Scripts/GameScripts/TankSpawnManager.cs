@@ -13,6 +13,7 @@ public class TankSpawnManager : MonoBehaviour
     private void OnEnable()
     {
         TankGameEvents.SpawnTanksEvent += SpawnTanks;
+        //TankGameEvents.OnObjectDestroyedEvent += ResetTankPosition;
         TankGameEvents.OnResetGameEvent += Reset;
         TankGameEvents.OnRoundResetEvent += Reset;
     }
@@ -20,6 +21,7 @@ public class TankSpawnManager : MonoBehaviour
     private void OnDisable()
     {
         TankGameEvents.SpawnTanksEvent -= SpawnTanks;
+        //TankGameEvents.OnObjectDestroyedEvent -= ResetTankPosition;
         TankGameEvents.OnResetGameEvent -= Reset;
         TankGameEvents.OnRoundResetEvent -= Reset;
     }
@@ -77,4 +79,9 @@ public class TankSpawnManager : MonoBehaviour
 
         TankGameEvents.OnTanksSpawnedEvent?.Invoke(allTanksSpawnedIn); // tell the game that our tanks have been spawned in!
     }
+
+    // void ResetTankPosition(Transform tankDestroyed)
+    // {
+    //     tankDestroyed.position = allPossibleSpawnPoints[0].position;
+    // }
 }

@@ -10,7 +10,6 @@ public class BallKick : MonoBehaviour
     // is called when the trigger hits an object
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("It ran");
         if (other.gameObject.tag == "Ball")
         {
             other.rigidbody.AddExplosionForce(forceApplied, transform.position, 10f); ; //Kick the ball
