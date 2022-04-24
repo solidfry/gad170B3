@@ -14,7 +14,7 @@ public static class TankGameEvents
     public delegate void OnResetTank();
     public delegate void OnGameEnded();
     public delegate void ShowEndScreen(Team winningTeam);
-
+    public delegate void OnTanksRepositioned();
     public delegate void ResetGame();
     public delegate void ResetRound();
 
@@ -53,7 +53,7 @@ public static class TankGameEvents
     /// A tank needs to be reset
     /// </summary>
     public static OnResetTank OnResetTankEvent;
-
+    public static OnTanksRepositioned OnTanksRepositionedEvent;
     /// <summary>
     /// The game has ended
     /// </summary>

@@ -79,6 +79,7 @@ public class TankSpawnManager : MonoBehaviour
         }
 
         TankGameEvents.OnTanksSpawnedEvent?.Invoke(allTanksSpawnedIn); // tell the game that our tanks have been spawned in!
+        TankGameEvents.OnTanksRepositionedEvent?.Invoke();
     }
 
 

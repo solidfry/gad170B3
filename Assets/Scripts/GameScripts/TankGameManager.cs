@@ -5,7 +5,7 @@ using UnityEngine;
 public class TankGameManager : MonoBehaviour
 {
 
-    public float preGameWaitTime = 3f;
+    public float preGameWaitTime = 5f;
     private List<Tank> allTanksSpawnedIn = new List<Tank>(); // a list of all the tanks that we spawned in
     private int playerOneScore;
     private int playerTwoScore;
@@ -40,7 +40,6 @@ public class TankGameManager : MonoBehaviour
             Tank tempTank = tanksSpawnedIn[i].GetComponent<Tank>(); // store a reference to the tank script
             allTanksSpawnedIn.Add(tempTank);
 
-            //UpdateScores();
         }
     }
 
@@ -55,7 +54,6 @@ public class TankGameManager : MonoBehaviour
             return; // jump out of here if the object coming in doesn't tank script
         }
 
-        // Invoke("ResetRound", 3f); // after 3 seconds reset our round
     }
 
     // Start is called before the first frame update
@@ -84,8 +82,8 @@ public class TankGameManager : MonoBehaviour
     private IEnumerator GameLogic()
     {
         TankGameEvents.OnResetGameEvent?.Invoke(); // invoke our resetGameEvent
-        TankGameEvents.OnPreGameEvent?.Invoke(); // call our pregame event
         TankGameEvents.SpawnTanksEvent(2); // might want to do different things between tank spawed and game started
+        TankGameEvents.OnPreGameEvent?.Invoke(); // call our pregame event
         yield return new WaitForSeconds(preGameWaitTime);
         TankGameEvents.OnGameStartedEvent?.Invoke(); // start our game up
         // do something else in too

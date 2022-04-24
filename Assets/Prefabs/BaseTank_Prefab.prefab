@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dcbc84631449394fa06a2c1f68ed15a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableTankMovement: 0
+  enableTankMovement: 1
   playerNumber: 0
   tankControls:
     forward: 119
@@ -437,6 +437,7 @@ MonoBehaviour:
   tankHealth:
     minHealth: 0
     maxHealth: 100
+    currentHealth: 0
     isDead: 1
     fullHealthColour: {r: 0, g: 1, b: 0, a: 1}
     zeroHealthColour: {r: 1, g: 0, b: 0, a: 1}
@@ -448,6 +449,7 @@ MonoBehaviour:
       tankIdleSound: {fileID: 8300000, guid: ebb9c6c3d94bfd84087fb8c0fd7f7a00, type: 3}
       tankMovingSound: {fileID: 8300000, guid: 3de0a9a6424a75f4fb350d35f90385d4, type: 3}
       pitchRangeMax: 0.2
+    enableMovement: 1
   tankMainGun:
     mainGunTransform: {fileID: 3182881852141773420}
     tankShellPrefab: {fileID: 6863767184128917887, guid: 64d33ca7dc1959b43b854fc666f30204,

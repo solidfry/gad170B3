@@ -64,6 +64,11 @@ PrefabInstance:
       propertyPath: tankControls.fireButton
       value: 305
       objectReference: {fileID: 0}
+    - target: {fileID: 318541969840425566, guid: 268f946728390b64db521f40f31a4a70,
+        type: 3}
+      propertyPath: tankMovement.enableMovement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 491440104372762008, guid: 268f946728390b64db521f40f31a4a70,
         type: 3}
       propertyPath: m_Material

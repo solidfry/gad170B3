@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 113495853}
   - component: {fileID: 113495855}
   - component: {fileID: 113495854}
+  - component: {fileID: 113495857}
   - component: {fileID: 113495856}
   m_Layer: 5
   m_Name: RoundOverText
@@ -258,7 +259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &113495853
 RectTransform:
   m_ObjectHideFlags: 0
@@ -277,7 +278,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 312.7858, y: 50}
+  m_SizeDelta: {x: 923.93, y: 144.225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &113495854
 MonoBehaviour:
@@ -310,7 +311,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.99999166}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -327,8 +328,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -424,7 +425,7 @@ MonoBehaviour:
   tweenTargetIsTargetGO: 1
   delay: 0
   duration: 1
-  easeType: 6
+  easeType: 15
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -455,7 +456,7 @@ MonoBehaviour:
   isRelative: 1
   isFrom: 1
   isIndependentUpdate: 0
-  autoKill: 1
+  autoKill: 0
   autoGenerate: 1
   isActive: 1
   isValid: 1
@@ -466,7 +467,7 @@ MonoBehaviour:
   autoPlay: 1
   useTargetAsV3: 0
   endValueFloat: 0
-  endValueV3: {x: 0, y: -3, z: 0}
+  endValueV3: {x: 0, y: -50, z: 0}
   endValueV2: {x: 0, y: 0}
   endValueColor: {r: 1, g: 1, b: 1, a: 1}
   endValueString: 
@@ -478,6 +479,113 @@ MonoBehaviour:
     height: 0
   endValueTransform: {fileID: 0}
   optionalBool0: 0
+  optionalBool1: 0
+  optionalFloat0: 0
+  optionalInt0: 0
+  optionalRotationMode: 0
+  optionalScrambleMode: 0
+  optionalString: 
+--- !u!114 &113495857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113495852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0390bd8b8ffd640b34fe25065ff1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateType: 0
+  isSpeedBased: 0
+  hasOnStart: 0
+  hasOnPlay: 0
+  hasOnUpdate: 0
+  hasOnStepComplete: 0
+  hasOnComplete: 0
+  hasOnTweenCreated: 0
+  hasOnRewind: 0
+  onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  onUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  onStepComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onTweenCreated:
+    m_PersistentCalls:
+      m_Calls: []
+  onRewind:
+    m_PersistentCalls:
+      m_Calls: []
+  targetIsSelf: 1
+  targetGO: {fileID: 0}
+  tweenTargetIsTargetGO: 1
+  delay: 0
+  duration: 1
+  easeType: 6
+  easeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  loopType: 0
+  loops: 1
+  id: 
+  isRelative: 0
+  isFrom: 1
+  isIndependentUpdate: 0
+  autoKill: 1
+  autoGenerate: 1
+  isActive: 1
+  isValid: 1
+  target: {fileID: 113495854}
+  animationType: 7
+  targetType: 3
+  forcedTargetType: 0
+  autoPlay: 1
+  useTargetAsV3: 0
+  endValueFloat: 0
+  endValueV3: {x: 0, y: 0, z: 0}
+  endValueV2: {x: 0, y: 0}
+  endValueColor: {r: 1, g: 1, b: 1, a: 1}
+  endValueString: 
+  endValueRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  endValueTransform: {fileID: 0}
+  optionalBool0: 1
   optionalBool1: 0
   optionalFloat0: 0
   optionalInt0: 0
@@ -646,6 +754,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Intensity
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561064767747504237, guid: 3084d27f123203345b2c5101aa0053b4,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 4.544822e+30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561064767747504237, guid: 3084d27f123203345b2c5101aa0053b4,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 4.54e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561064767747504237, guid: 3084d27f123203345b2c5101aa0053b4,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.6632139e+22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561064767747504237, guid: 3084d27f123203345b2c5101aa0053b4,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 2.2535757e+20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3084d27f123203345b2c5101aa0053b4, type: 3}
@@ -1139,7 +1267,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00064087, y: 0}
+  m_AnchoredPosition: {x: -0.00064087, y: -179.16}
   m_SizeDelta: {x: 923.93, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &658557644
@@ -1653,7 +1781,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2706,7 +2834,7 @@ MonoBehaviour:
   animationType: 2
   targetType: 11
   forcedTargetType: 0
-  autoPlay: 1
+  autoPlay: 0
   useTargetAsV3: 0
   endValueFloat: 0
   endValueV3: {x: 0, y: -30, z: 0}
@@ -2813,7 +2941,7 @@ MonoBehaviour:
   animationType: 7
   targetType: 3
   forcedTargetType: 0
-  autoPlay: 1
+  autoPlay: 0
   useTargetAsV3: 0
   endValueFloat: 0
   endValueV3: {x: 0, y: 0, z: 0}
@@ -2865,7 +2993,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.9999931}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.99998814}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2882,10 +3010,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.8
-  m_fontSizeBase: 90
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -3561,12 +3689,22 @@ PrefabInstance:
     - target: {fileID: 928247861869270367, guid: 7425c35d27d707e4da7acb7cd4155211,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: -9.641515e-24
       objectReference: {fileID: 0}
     - target: {fileID: 928247861869270367, guid: 7425c35d27d707e4da7acb7cd4155211,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 4.54e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 928247861869270367, guid: 7425c35d27d707e4da7acb7cd4155211,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 2.3123792e+14
+      objectReference: {fileID: 0}
+    - target: {fileID: 928247861869270367, guid: 7425c35d27d707e4da7acb7cd4155211,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 6.274321e-39
       objectReference: {fileID: 0}
     - target: {fileID: 3984292382895897892, guid: 7425c35d27d707e4da7acb7cd4155211,
         type: 3}
@@ -3686,17 +3824,22 @@ PrefabInstance:
     - target: {fileID: 4768131999250008392, guid: 7425c35d27d707e4da7acb7cd4155211,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -5.135071e-19
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 4768131999250008392, guid: 7425c35d27d707e4da7acb7cd4155211,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 4.54e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768131999250008392, guid: 7425c35d27d707e4da7acb7cd4155211,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 2.8176907e+20
       objectReference: {fileID: 0}
     - target: {fileID: 4768131999250008392, guid: 7425c35d27d707e4da7acb7cd4155211,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.5697343e-37
+      value: 6.27423e-39
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7425c35d27d707e4da7acb7cd4155211, type: 3}
@@ -3776,6 +3919,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561064767747504237, guid: 3084d27f123203345b2c5101aa0053b4,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 4.5447874e+30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561064767747504237, guid: 3084d27f123203345b2c5101aa0053b4,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 4.54e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561064767747504237, guid: 3084d27f123203345b2c5101aa0053b4,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 3172.329
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561064767747504237, guid: 3084d27f123203345b2c5101aa0053b4,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 789.28625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3084d27f123203345b2c5101aa0053b4, type: 3}

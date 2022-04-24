@@ -21,27 +21,26 @@ public class Tank : MonoBehaviour
     TankSpawnManager tankSpawnManager;
     private void OnEnable()
     {
+        TankGameEvents.OnPreGameEvent += DisableInput;
         TankGameEvents.OnPickUpBoostEvent += tankMovement.ModifySpeed;
         TankGameEvents.OnPickUpBoostResetEvent += ResetBoost;
         TankGameEvents.OnObjectDestroyedEvent += Dead; // add dead function to the event for when a tank is destroyed
         TankGameEvents.OnObjectTakeDamageEvent += TankTakenDamage; // assign our health function to our event so we can take damage
         TankGameEvents.OnGameStartedEvent += EnableInput; // assign our tank movement function to the game started event
         TankGameEvents.OnResetTankEvent += tankHealth.ResetTankHealth;
-        TankGameEvents.OnRoundResetEvent += EnableInput;
-        TankGameEvents.OnRoundResetEvent += EnableTankMovement;
+        TankGameEvents.OnTanksRepositionedEvent += EnableInput;
     }
 
     private void OnDisable()
     {
+        TankGameEvents.OnPreGameEvent -= DisableInput;
         TankGameEvents.OnPickUpBoostEvent -= tankMovement.ModifySpeed;
         TankGameEvents.OnPickUpBoostResetEvent -= ResetBoost; // add dead function to the event for when a tank is destroyed
         TankGameEvents.OnObjectDestroyedEvent -= Dead; // add dead function to the event for when a tank is destroyed
         TankGameEvents.OnObjectTakeDamageEvent -= TankTakenDamage; // assign our health function to our event so we can take damage
         TankGameEvents.OnGameStartedEvent -= EnableInput; // assign our tank movement function to the game started event
         TankGameEvents.OnResetTankEvent -= tankHealth.ResetTankHealth;
-        TankGameEvents.OnRoundResetEvent -= EnableInput;
-        TankGameEvents.OnRoundResetEvent -= EnableTankMovement;
-
+        TankGameEvents.OnTanksRepositionedEvent -= EnableInput;
     }
 
     // Start is called before the first frame update
@@ -73,6 +72,13 @@ public class Tank : MonoBehaviour
         Debug.Log("Enable input was run");
         tankMovement.EnableTankMovement(true);
         tankMainGun.EnableShooting(true);
+    }
+
+    private void DisableInput()
+    {
+        enableTankMovement = false;
+        tankMovement.EnableTankMovement(false);
+        tankMainGun.EnableShooting(false);
     }
 
     private void EnableTankMovement()

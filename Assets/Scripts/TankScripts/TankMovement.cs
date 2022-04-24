@@ -16,6 +16,7 @@ public class TankMovement
     public TankSoundEffects tankSoundEffects = new TankSoundEffects(); // creating a new instance of our tank sound effects class
 
     private Rigidbody rigidbody;// a reference to the rigidbody on our tank
+    [SerializeField]
     private bool enableMovement = true; // if this is true we are allowed to accept input from the player
 
     private bool EnableMovement
