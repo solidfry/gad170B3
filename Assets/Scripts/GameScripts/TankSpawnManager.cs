@@ -13,7 +13,7 @@ public class TankSpawnManager : MonoBehaviour
     private void OnEnable()
     {
         TankGameEvents.SpawnTanksEvent += SpawnTanks;
-        //TankGameEvents.OnObjectDestroyedEvent += ResetTankPosition;
+        TankGameEvents.OnObjectDestroyedEvent += ResetTankPosition;
         TankGameEvents.OnResetGameEvent += Reset;
         TankGameEvents.OnRoundResetEvent += Reset;
     }
@@ -21,7 +21,7 @@ public class TankSpawnManager : MonoBehaviour
     private void OnDisable()
     {
         TankGameEvents.SpawnTanksEvent -= SpawnTanks;
-        //TankGameEvents.OnObjectDestroyedEvent -= ResetTankPosition;
+        TankGameEvents.OnObjectDestroyedEvent -= ResetTankPosition;
         TankGameEvents.OnResetGameEvent -= Reset;
         TankGameEvents.OnRoundResetEvent -= Reset;
     }
@@ -44,6 +44,7 @@ public class TankSpawnManager : MonoBehaviour
     /// </summary>
     private void Reset()
     {
+        Debug.Log("Reset was run");
         for (int i = 0; i < allTanksSpawnedIn.Count; i++)
         {
             Destroy(allTanksSpawnedIn[i]);// destroy each tank we spawned in
@@ -80,8 +81,24 @@ public class TankSpawnManager : MonoBehaviour
         TankGameEvents.OnTanksSpawnedEvent?.Invoke(allTanksSpawnedIn); // tell the game that our tanks have been spawned in!
     }
 
-    // void ResetTankPosition(Transform tankDestroyed)
-    // {
-    //     tankDestroyed.position = allPossibleSpawnPoints[0].position;
-    // }
+
+    // Instead of a tank dying, we reset the transform to it's start position
+    void ResetTankPosition(Transform tankDestroyed)
+    {
+        TankGameEvents.OnResetTankEvent?.Invoke();
+        tankDestroyed.gameObject.SetActive(false);
+        tankDestroyed.position = allPossibleSpawnPoints[Random.Range(0, allPossibleSpawnPoints.Count)].position;
+        // After the tanks position is reset we need to remove any force it had previously applied
+        tankDestroyed.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        tankDestroyed.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        StartCoroutine(DelaySpawn(tankDestroyed));
+
+        // Invoke the event so that other scripts can do stuff
+    }
+
+    IEnumerator DelaySpawn(Transform tankDestroyed)
+    {
+        yield return new WaitForSeconds(2);
+        tankDestroyed.gameObject.SetActive(true);
+    }
 }

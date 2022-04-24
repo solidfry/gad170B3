@@ -18,7 +18,7 @@ public class Tank : MonoBehaviour
     public TankMovement tankMovement = new TankMovement(); // creating a new instance of our tank movement script
     public TankMainGun tankMainGun = new TankMainGun(); // creating a new instance of our tank main gun script
     public GameObject explosionPrefab; // the prefab we will use when we have 0 left to make it go boom!
-
+    TankSpawnManager tankSpawnManager;
     private void OnEnable()
     {
         TankGameEvents.OnPickUpBoostEvent += tankMovement.ModifySpeed;
@@ -26,6 +26,9 @@ public class Tank : MonoBehaviour
         TankGameEvents.OnObjectDestroyedEvent += Dead; // add dead function to the event for when a tank is destroyed
         TankGameEvents.OnObjectTakeDamageEvent += TankTakenDamage; // assign our health function to our event so we can take damage
         TankGameEvents.OnGameStartedEvent += EnableInput; // assign our tank movement function to the game started event
+        TankGameEvents.OnResetTankEvent += tankHealth.ResetTankHealth;
+        TankGameEvents.OnRoundResetEvent += EnableInput;
+        TankGameEvents.OnRoundResetEvent += EnableTankMovement;
     }
 
     private void OnDisable()
@@ -35,6 +38,10 @@ public class Tank : MonoBehaviour
         TankGameEvents.OnObjectDestroyedEvent -= Dead; // add dead function to the event for when a tank is destroyed
         TankGameEvents.OnObjectTakeDamageEvent -= TankTakenDamage; // assign our health function to our event so we can take damage
         TankGameEvents.OnGameStartedEvent -= EnableInput; // assign our tank movement function to the game started event
+        TankGameEvents.OnResetTankEvent -= tankHealth.ResetTankHealth;
+        TankGameEvents.OnRoundResetEvent -= EnableInput;
+        TankGameEvents.OnRoundResetEvent -= EnableTankMovement;
+
     }
 
     // Start is called before the first frame update
@@ -63,8 +70,14 @@ public class Tank : MonoBehaviour
     /// </summary>
     private void EnableInput()
     {
+        Debug.Log("Enable input was run");
         tankMovement.EnableTankMovement(true);
         tankMainGun.EnableShooting(true);
+    }
+
+    private void EnableTankMovement()
+    {
+        tankMovement.EnableTankMovement(true);
     }
 
     /// <summary>
@@ -119,7 +132,6 @@ public class Tank : MonoBehaviour
     void Boost(float valueToBoost, float amountToBoost)
     {
         TankGameEvents.OnPickUpBoostEvent?.Invoke(valueToBoost, amountToBoost);
-        // Debug.Log($"The speed sent to the even is {valueToBoost} and the speedBoost is {amountToBoost} ");
         TankGameEvents.OnPickUpBoostResetEvent.Invoke(valueToBoost);
     }
 

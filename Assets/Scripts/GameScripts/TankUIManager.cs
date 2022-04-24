@@ -7,6 +7,7 @@ using TMPro;
 public class TankUIManager : MonoBehaviour
 {
     public GameObject startScreen;
+    public TMP_Text startText;
     public GameObject roundOverText;
 
 
@@ -26,7 +27,7 @@ public class TankUIManager : MonoBehaviour
         TankGameEvents.OnGameStartedEvent -= InGame;
         // TankGameEvents.OnRoundEnededEvent -= PostRound;
         TankGameEvents.ShowEndScreenEvent -= ShowGameEnd;
-
+        StopAllCoroutines();
     }
 
     /// <summary>
@@ -35,6 +36,7 @@ public class TankUIManager : MonoBehaviour
     private void PreGame()
     {
         startScreen.SetActive(true);
+        StartCoroutine(ReadyMessage());
         roundOverText.SetActive(false);
     }
 
@@ -46,7 +48,6 @@ public class TankUIManager : MonoBehaviour
         startScreen.SetActive(false);
         roundOverText.SetActive(false);
     }
-
 
     /// <summary>
     /// Called when the round is over
@@ -69,6 +70,18 @@ public class TankUIManager : MonoBehaviour
         {
             roundOverText.GetComponentInChildren<TMP_Text>().text = winningTeam.ToString() + " Wins!";
         }
+    }
+
+    IEnumerator ReadyMessage()
+    {
+        yield return new WaitForSeconds(1);
+        startText.text = "3";
+        yield return new WaitForSeconds(1);
+        startText.text = "2";
+        yield return new WaitForSeconds(1);
+        startText.text = "1";
+        yield return new WaitForSeconds(1);
+        startText.text = "GO!";
     }
 }
 

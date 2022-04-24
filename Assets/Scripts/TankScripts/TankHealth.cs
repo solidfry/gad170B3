@@ -7,15 +7,19 @@ using UnityEngine.UI;
 /// Handles everything in regards to our tanks health system
 /// </summary>
 [System.Serializable]
-public class TankHealth 
+public class TankHealth
 {
-    public float minHealth = 0; // our min health
-    public float maxHealth = 100; // our max health
+    public float minHealth = 0f; // our min health
+    public float maxHealth = 100f; // our max health
+    [SerializeField]
     private float currentHealth; // our current health
     public bool isDead = true; // is our character alive?
     public Color fullHealthColour = Color.green; // our full health colour
     public Color zeroHealthColour = Color.red; // colour of no health
     private Transform tankParent; // reference to the tank that this script is attached to
+
+    public Slider healthSlider; // reference to the health Slider
+    private Image fillImage; // reference to the fill image component of our slider;
 
     public float CurrentHealth
     {
@@ -42,13 +46,13 @@ public class TankHealth
                 isDead = false;
             }
 
-            if(healthSlider != null)
+            if (healthSlider != null)
             {
                 healthSlider.value = CurrentHealth;
 
                 if (fillImage != null)
-                {                
-                                                    // if there is a fill image then let's change its colour to match our current health
+                {
+                    // if there is a fill image then let's change its colour to match our current health
                     fillImage.color = Color.Lerp(zeroHealthColour, fullHealthColour, CurrentHealth / maxHealth);
                     // move towards the colour at the rate of our health/maxhealth = a % of our health
                 }
@@ -60,15 +64,12 @@ public class TankHealth
         }
     }
 
-    public Slider healthSlider; // reference to the health Slider
-    private Image fillImage; // reference to the fill image component of our slider;
-
     public void SetUp(Transform TankTransform)
     {
         tankParent = TankTransform;
-        if(healthSlider != null)
+        if (healthSlider != null)
         {
-            if(healthSlider.fillRect != null)
+            if (healthSlider.fillRect != null)
             {
                 fillImage = healthSlider.fillRect.transform.GetComponent<Image>(); // grab a reference to our health slider image
                 Debug.Log("Got instance");
@@ -92,4 +93,13 @@ public class TankHealth
         Debug.Log(Amount);
         CurrentHealth += Amount; // increase our health by the amount
     }
+
+    public void ResetTankHealth()
+    {
+        Debug.Log("Reset tank ran");
+        isDead = false;
+        ApplyHealthChange(maxHealth);
+    }
+
+
 }

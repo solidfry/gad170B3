@@ -18,6 +18,11 @@ public class TankMovement
     private Rigidbody rigidbody;// a reference to the rigidbody on our tank
     private bool enableMovement = true; // if this is true we are allowed to accept input from the player
 
+    private bool EnableMovement
+    {
+        get => enableMovement;
+        set => enableMovement = value;
+    }
     private Transform tankReference; // a reference to the tank gameobject
 
     public float CurrentSpeed
@@ -59,7 +64,7 @@ public class TankMovement
     /// <param name="Enabled"></param>
     public void EnableTankMovement(bool Enabled)
     {
-        enableMovement = Enabled;
+        EnableMovement = Enabled;
     }
 
     /// <summary>

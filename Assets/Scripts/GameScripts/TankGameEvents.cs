@@ -11,7 +11,7 @@ public static class TankGameEvents
     public delegate void OnPickUpBoost(float speed, float speedModifier);
     public delegate void OnPickUpBoostReset(float originalSpeed);
     public delegate void OnGoalScored(Collider currentGoals);
-
+    public delegate void OnResetTank();
     public delegate void OnGameEnded();
     public delegate void ShowEndScreen(Team winningTeam);
 
@@ -48,6 +48,11 @@ public static class TankGameEvents
     /// A goal is scored 
     /// </summary>
     public static OnGoalScored OnGoalScoredEvent;
+
+    /// <summary>
+    /// A tank needs to be reset
+    /// </summary>
+    public static OnResetTank OnResetTankEvent;
 
     /// <summary>
     /// The game has ended

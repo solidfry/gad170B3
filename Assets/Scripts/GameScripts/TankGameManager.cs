@@ -7,20 +7,19 @@ public class TankGameManager : MonoBehaviour
 
     public float preGameWaitTime = 3f;
     private List<Tank> allTanksSpawnedIn = new List<Tank>(); // a list of all the tanks that we spawned in
-
     private int playerOneScore;
     private int playerTwoScore;
 
     private void OnEnable()
     {
         TankGameEvents.OnTanksSpawnedEvent += TanksSpawned; //add our tanks spawned function
-        TankGameEvents.OnObjectDestroyedEvent += TankDespawned;
+        //TankGameEvents.OnObjectDestroyedEvent += TankDespawned;
     }
 
     private void OnDisable()
     {
         TankGameEvents.OnTanksSpawnedEvent -= TanksSpawned; //add our tanks spawned function
-        TankGameEvents.OnObjectDestroyedEvent -= TankDespawned;
+        //TankGameEvents.OnObjectDestroyedEvent -= TankDespawned;
     }
 
     /// <summary>
@@ -32,34 +31,16 @@ public class TankGameManager : MonoBehaviour
         allTanksSpawnedIn.Clear();
         for (int i = 0; i < tanksSpawnedIn.Count; i++)
         {
+
             if (!tanksSpawnedIn[i].GetComponent<Tank>())
             {
                 continue; // checks to see if it has a tank script, if it does then add it to the list, otherwise continue to the next element
             }
+
             Tank tempTank = tanksSpawnedIn[i].GetComponent<Tank>(); // store a reference to the tank script
             allTanksSpawnedIn.Add(tempTank);
 
-            UpdateScores();
-        }
-    }
-
-    private void UpdateScores()
-    {
-        for (int i = 0; i < allTanksSpawnedIn.Count; i++)
-        {
-            switch (allTanksSpawnedIn[i].playerNumber)
-            {
-                case PlayerNumber.One:
-                    {
-                        TankGameEvents.OnScoreUpdatedEvent?.Invoke(allTanksSpawnedIn[i].playerNumber, playerOneScore);
-                        break;
-                    }
-                case PlayerNumber.Two:
-                    {
-                        TankGameEvents.OnScoreUpdatedEvent?.Invoke(allTanksSpawnedIn[i].playerNumber, playerTwoScore);
-                        break;
-                    }
-            }
+            //UpdateScores();
         }
     }
 
@@ -74,33 +55,7 @@ public class TankGameManager : MonoBehaviour
             return; // jump out of here if the object coming in doesn't tank script
         }
 
-        allTanksSpawnedIn.Remove(tankDespawned.GetComponent<Tank>()); // remove the tank despawned
-
-        //check to see how tanks are left, if there is one, then declare it the winner
-        if (allTanksSpawnedIn.Count <= 1)
-        {
-            // we have one tank left in theory.
-            //delclare that player the winner
-            Debug.Log("Winner is" + allTanksSpawnedIn[0].playerNumber.ToString());
-            // check to see which player is left and give them a point
-            if ((int)allTanksSpawnedIn[0].playerNumber == 1)
-            {
-                playerOneScore++;
-            }
-            else if ((int)allTanksSpawnedIn[0].playerNumber == 2)
-            {
-                playerTwoScore++;
-            }
-
-            // update our score
-            UpdateScores();
-            TankGameEvents.OnRoundEnededEvent?.Invoke(allTanksSpawnedIn[0].playerNumber);
-
-            // reset our round
-            Invoke("ResetRound", 3f); // after 3 seconds reset our round
-
-        }
-
+        // Invoke("ResetRound", 3f); // after 3 seconds reset our round
     }
 
     // Start is called before the first frame update

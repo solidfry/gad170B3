@@ -37,7 +37,7 @@ PrefabInstance:
     - target: {fileID: 318541969840425566, guid: 268f946728390b64db521f40f31a4a70,
         type: 3}
       propertyPath: enableTankMovement
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 318541969840425566, guid: 268f946728390b64db521f40f31a4a70,
         type: 3}

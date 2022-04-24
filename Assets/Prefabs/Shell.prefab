@@ -196,7 +196,7 @@ MonoBehaviour:
   tankLayer:
     serializedVersion: 2
     m_Bits: 256
-  maxDamage: 0
+  maxDamage: 100
   explosionForce: 1000
   maxShellLifeTime: 2
   explosionRadius: 10

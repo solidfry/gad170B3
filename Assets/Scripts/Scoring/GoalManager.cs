@@ -10,6 +10,8 @@ public class GoalManager : MonoBehaviour
     [SerializeField]
     public TMP_Text redTeamScoreText, blueTeamScoreText;
     private Team winningTeam;
+
+
     [SerializeField]
     public int redTeamScore, blueTeamScore;
     public int RedScore
@@ -84,5 +86,6 @@ public class GoalManager : MonoBehaviour
 
         TankGameEvents.ShowEndScreenEvent?.Invoke(winningTeam);
     }
+
 
 }

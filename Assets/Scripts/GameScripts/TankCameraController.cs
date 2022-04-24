@@ -39,7 +39,7 @@ public class TankCameraController : MonoBehaviour
             {
                 allTanksList.Add(allTanks[i].gameObject); // store the game object of the tank
             }
-            allTanksList.Add(ball.gameObject);
+            //allTanksList.Add(ball.gameObject);
 
 
             Initalise(allTanksList);
@@ -60,9 +60,6 @@ public class TankCameraController : MonoBehaviour
     {
         containWithinCamera = allTanks; // set our reference to all the tanks list
 
-        // I wanted the camera to account for the ball that I added to the game 
-        if (ball != null)
-            containWithinCamera.Add(ball.gameObject);
         // find the average position
         FindAveragePosition();
         // set our transform to our immediate desired position
@@ -152,7 +149,15 @@ public class TankCameraController : MonoBehaviour
             }
             else
             {
-                averagePos += containWithinCamera[i].transform.position; // add the current tank to our position
+                if (ball.gameObject is not null)
+                {
+                    averagePos += containWithinCamera[i].transform.position + ball.transform.position; // add the current tank to our position
+                }
+                else
+                {
+                    averagePos += containWithinCamera[i].transform.position; // add the current tank to our position
+                }
+
                 numTargets++; // increase the number of tank targets by one
             }
         }
