@@ -15,12 +15,13 @@ public class ModifyStat : MonoBehaviour, IModifyStats
     {
         hasAcquired = true;
         this.gameObject.GetComponent<Renderer>().enabled = false;
+        this.gameObject.GetComponent<Collider>().enabled = false;
         StartCoroutine(RespawnBoost());
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.GetComponent<Tank>() is not null)
+        if (other.gameObject.GetComponent<Tank>() is not null && hasAcquired == false)
             HasAcquired();
     }
 
@@ -28,6 +29,8 @@ public class ModifyStat : MonoBehaviour, IModifyStats
     {
         yield return new WaitForSeconds(boostCountDown);
         this.gameObject.GetComponent<Renderer>().enabled = true;
+        this.gameObject.GetComponent<Collider>().enabled = true;
+        hasAcquired = false;
     }
 
 }

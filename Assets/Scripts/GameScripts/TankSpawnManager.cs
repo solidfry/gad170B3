@@ -67,7 +67,7 @@ public class TankSpawnManager : MonoBehaviour
             {
                 // checking if I have enough unique prefabs so I can spawn different tanks
                 // spawn in a tank prefab, at a random spawn point
-                Transform tempSpawnPoint = startingAllPossibleSpawnPoints[Random.Range(0, startingAllPossibleSpawnPoints.Count)]; // getting a random spawn point
+                Transform tempSpawnPoint = startingAllPossibleSpawnPoints[0]; // I dont want them to be random
                 GameObject clone = Instantiate(tankPrefabs[i], tempSpawnPoint.position, tankPrefabs[i].transform.rotation);
                 startingAllPossibleSpawnPoints.Remove(tempSpawnPoint); // remove the temp spawn point from our possible spawn point list
                 allTanksSpawnedIn.Add(clone); // keep track of the tank we just spawned in

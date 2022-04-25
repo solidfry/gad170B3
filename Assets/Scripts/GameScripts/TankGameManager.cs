@@ -7,19 +7,15 @@ public class TankGameManager : MonoBehaviour
 
     public float preGameWaitTime = 5f;
     private List<Tank> allTanksSpawnedIn = new List<Tank>(); // a list of all the tanks that we spawned in
-    private int playerOneScore;
-    private int playerTwoScore;
 
     private void OnEnable()
     {
         TankGameEvents.OnTanksSpawnedEvent += TanksSpawned; //add our tanks spawned function
-        //TankGameEvents.OnObjectDestroyedEvent += TankDespawned;
     }
 
     private void OnDisable()
     {
         TankGameEvents.OnTanksSpawnedEvent -= TanksSpawned; //add our tanks spawned function
-        //TankGameEvents.OnObjectDestroyedEvent -= TankDespawned;
     }
 
     /// <summary>
@@ -41,19 +37,6 @@ public class TankGameManager : MonoBehaviour
             allTanksSpawnedIn.Add(tempTank);
 
         }
-    }
-
-    /// <summary>
-    /// Called when a tank is despawned
-    /// </summary>
-    /// <param name="tankDespawned"></param>
-    private void TankDespawned(Transform tankDespawned)
-    {
-        if (tankDespawned.GetComponent<Tank>() == null)
-        {
-            return; // jump out of here if the object coming in doesn't tank script
-        }
-
     }
 
     // Start is called before the first frame update
