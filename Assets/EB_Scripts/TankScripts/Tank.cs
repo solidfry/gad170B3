@@ -126,7 +126,7 @@ public class Tank : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.GetComponent<IModifyStats>() is not null)
+        if (other.gameObject.GetComponent<IModifyStats>() != null)
         {
             float boostValue = other.gameObject.GetComponent<ModifyStat>().boostValue;
             float originalValue = tankMovement.speed;

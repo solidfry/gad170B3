@@ -21,7 +21,7 @@ public class ModifyStat : MonoBehaviour, IModifyStats
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.GetComponent<Tank>() is not null && hasAcquired == false)
+        if (other.gameObject.GetComponent<Tank>() != null && hasAcquired == false)
             HasAcquired();
     }
 

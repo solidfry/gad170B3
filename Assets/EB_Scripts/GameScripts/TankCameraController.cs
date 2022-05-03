@@ -148,7 +148,7 @@ public class TankCameraController : MonoBehaviour
             }
             else
             {
-                if (ball.gameObject is not null)
+                if (ball.gameObject != null)
                 {
                     averagePos += containWithinCamera[i].transform.position; // add the current tank to our position
                 }
