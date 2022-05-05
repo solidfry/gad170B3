@@ -9,15 +9,18 @@ public class DetectGoal : MonoBehaviour
 
     private void Awake()
     {
+        // Get the current position of the ball
         currentPosition = this.gameObject.transform;
     }
 
+    // Detect a goal when the ball enters the goal trigger area
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Goal>())
             GoalScored(other);
     }
 
+    // When a goal is scored we invoke a bunch of events as well as reset the ball position
     void GoalScored(Collider other)
     {
         TankGameEvents.OnGoalScoredEvent?.Invoke(other.gameObject.GetComponent<Collider>());
@@ -27,6 +30,7 @@ public class DetectGoal : MonoBehaviour
         ResetBall(ballSpawnPoint);
     }
 
+    // Ball is reset and velocity is set to zero.
     public void ResetBall(Transform spawnLocation)
     {
         spawnLocation = ballSpawnPoint;

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// This script rotates stuff
 public class Rotate : MonoBehaviour
 {
 

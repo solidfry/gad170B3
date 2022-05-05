@@ -11,6 +11,9 @@ public class ModifyStat : MonoBehaviour, IModifyStats
     public float boostCountDown = 2f;
     public bool hasAcquired = false;
 
+    /// <summary>
+    /// If the boost has been acquired 
+    /// </summary>
     public void HasAcquired()
     {
         hasAcquired = true;
@@ -25,6 +28,9 @@ public class ModifyStat : MonoBehaviour, IModifyStats
             HasAcquired();
     }
 
+    /// <summary>
+    /// After the boostCountDown time expires the boost is reactivated
+    /// </summary>
     public IEnumerator RespawnBoost()
     {
         yield return new WaitForSeconds(boostCountDown);

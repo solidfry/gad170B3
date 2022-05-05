@@ -83,7 +83,9 @@ public class TankSpawnManager : MonoBehaviour
     }
 
 
-    // Instead of a tank dying, we reset the transform to it's start position
+    /// <summary>
+    /// Instead of a tank dying, we reset the transform to it's start position
+    /// </summary>
     void ResetTankPosition(Transform tankDestroyed)
     {
         TankGameEvents.OnResetTankEvent?.Invoke();
@@ -93,13 +95,17 @@ public class TankSpawnManager : MonoBehaviour
         tankDestroyed.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         tankDestroyed.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         StartCoroutine(DelaySpawn(tankDestroyed));
-
-        // Invoke the event so that other scripts can do stuff
     }
+
+    /// <summary>
+    /// Turn the tank prefabs back on after X seconds
+    /// </summary>
+    /// <param name="tankDestroyed">The transform of the tank</param>
 
     IEnumerator DelaySpawn(Transform tankDestroyed)
     {
         yield return new WaitForSeconds(2);
         tankDestroyed.gameObject.SetActive(true);
     }
+
 }

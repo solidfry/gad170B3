@@ -11,7 +11,6 @@ public class GoalManager : MonoBehaviour
     public TMP_Text redTeamScoreText, blueTeamScoreText;
     private Team winningTeam;
 
-
     [SerializeField]
     public int redTeamScore, blueTeamScore;
     public int RedScore
@@ -44,6 +43,8 @@ public class GoalManager : MonoBehaviour
         TankGameEvents.OnGameEndedEvent -= GameOver;
     }
 
+    // OnGoalScoredEvent, we need to update the UI with the new scores 
+    // and show the goal score message in the UI
     void UpdateGoalScore(Collider goalCollider)
     {
         switch (goalCollider.gameObject.GetComponent<Goal>().team)
@@ -63,11 +64,13 @@ public class GoalManager : MonoBehaviour
         }
     }
 
+    // What do you think this does? Lol
     void UpdateUI(int value, TMP_Text textToUpdate)
     {
         textToUpdate.text = value.ToString();
     }
 
+    // This tells the UI who won the game then invokes the show end screen event
     void GameOver()
     {
 

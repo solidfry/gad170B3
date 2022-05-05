@@ -74,6 +74,9 @@ public class TankUIManager : MonoBehaviour
         StartCoroutine(ShowRoundOverMenu());
     }
 
+    /// <summary>
+    /// A little coroutine to run the UI Updates for the ready message
+    /// </summary>
     IEnumerator ReadyMessage()
     {
         yield return new WaitForSeconds(1);
@@ -86,6 +89,10 @@ public class TankUIManager : MonoBehaviour
         startText.text = "GO!";
     }
 
+    /// <summary>
+    /// A goal is scored so we need to update the UI
+    /// </summary>
+    /// <param name="scorer">The collider is needed so we can check who scored the goal</param>
     void GoalScored(Collider scorer)
     {
         var teamName = scorer.gameObject.GetComponent<Goal>().team;
@@ -107,6 +114,9 @@ public class TankUIManager : MonoBehaviour
         obj.GetComponent<DOTweenAnimation>().DORewind();
     }
 
+    /// <summary>
+    /// Show the round over menu at the end of the round
+    /// </summary>
     IEnumerator ShowRoundOverMenu()
     {
 

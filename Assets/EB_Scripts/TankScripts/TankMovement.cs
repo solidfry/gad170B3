@@ -107,6 +107,9 @@ public class TankMovement
         rigidbody.MoveRotation(rigidbody.rotation * turnRotation); // rotate our rigidbody based on our input.
     }
 
+    /// <summary>
+    /// This modifies the speed and saves the original speed for later use
+    /// </summary>
     public void ModifySpeed(float speed, float speedModifier)
     {
         float originalSpeed = speed;
@@ -115,6 +118,9 @@ public class TankMovement
         Debug.Log($"Speed in modifySpeed is {CurrentSpeed}");
     }
 
+    /// <summary>
+    /// This resets the speed to default after 3 seconds
+    /// </summary>
     public IEnumerator ResetSpeed(float originalSpeed)
     {
         // Debug.Log($"Speed reset will run in 3 seconds.");

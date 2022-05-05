@@ -7,7 +7,7 @@ public class BallKick : MonoBehaviour
 
     public float forceApplied = 300f;
 
-    // is called when the trigger hits an object
+    // is called when the trigger hits an object and then adds a force, but only on a ball
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Ball")

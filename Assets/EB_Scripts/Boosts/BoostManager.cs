@@ -13,6 +13,10 @@ public class BoostManager : MonoBehaviour
     {
         SpawnBoosts();
     }
+
+    /// <summary>
+    /// Some lil gizmos so we can see our spawn points in the scene
+    /// </summary>
     private void OnDrawGizmos()
     {
         // loops through all the possible spawn points

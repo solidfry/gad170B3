@@ -135,12 +135,18 @@ public class Tank : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Boost invokes some events and passes the data
+    /// </summary>
     void Boost(float valueToBoost, float amountToBoost)
     {
         TankGameEvents.OnPickUpBoostEvent?.Invoke(valueToBoost, amountToBoost);
         TankGameEvents.OnPickUpBoostResetEvent.Invoke(valueToBoost);
     }
 
+    /// <summary>
+    /// Runs the coroutine to reset health
+    /// </summary>  
     void ResetBoost(float valueToReset)
     {
         StartCoroutine(tankMovement.ResetSpeed(valueToReset));
