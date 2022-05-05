@@ -31,6 +31,9 @@ public class GoalManager : MonoBehaviour
         blueTeamScoreText.text = BlueScore.ToString();
     }
 
+
+    //  1.09 | Events assigned 
+    // 1.10 | Event listeners
     private void OnEnable()
     {
         TankGameEvents.OnGoalScoredEvent += UpdateGoalScore;

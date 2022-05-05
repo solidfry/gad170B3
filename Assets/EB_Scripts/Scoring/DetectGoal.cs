@@ -13,7 +13,7 @@ public class DetectGoal : MonoBehaviour
         currentPosition = this.gameObject.transform;
     }
 
-    // Detect a goal when the ball enters the goal trigger area
+    // 1.08 | Detect a goal when the ball enters the goal trigger area
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Goal>())
@@ -25,6 +25,7 @@ public class DetectGoal : MonoBehaviour
     {
         TankGameEvents.OnGoalScoredEvent?.Invoke(other.gameObject.GetComponent<Collider>());
         Debug.Log("Goal scored event invoked");
+        //  1.09 | Events invoked 
         TankGameEvents.OnRoundResetEvent?.Invoke();
         TankGameEvents.SpawnTanksEvent?.Invoke(2);
         ResetBall(ballSpawnPoint);
